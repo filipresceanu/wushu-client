@@ -1,0 +1,29 @@
+.navbar {
+  background-color: #131169;
+  height: 6rem;
+}
+.navbar-home {
+  font-size: 40px;
+}
+
+.navbar-element {
+  display: flex;
+  gap: 2rem;
+  font-size: 30px;
+}
+
+.navbar-link {
+  color: white !important;
+  text-decoration: none;
+}
+
+.navbar .active {
+  color: aquamarine !important;
+  text-decoration: none;
+}
+
+.navbar-secondary {
+  gap: 1rem;
+  display: flex;
+  font-size: x-large;
+}

@@ -1,0 +1,47 @@
+.competition {
+  margin-top: 3rem;
+  margin-left: 3rem;
+  margin-right: 3rem;
+}
+
+.competition-element {
+  margin-bottom: 3rem;
+  background-color: #22242e;
+  border-radius: 10px;
+  display: flex;
+  color: aliceblue;
+  height: 6rem;
+}
+
+.country-img {
+  width: 40%;
+  height: 40%;
+}
+
+.country {
+  margin-top: 0.5rem;
+  text-align: center;
+  margin-bottom: auto;
+  width: 15rem;
+}
+
+.logo-img {
+  height: 80%;
+}
+
+.logo {
+  align-items: center;
+  display: inherit;
+}
+
+.details {
+  margin-left: 2rem;
+}
+
+.status {
+  position: absolute;
+  background-color: #6cd33b;
+  padding: 0.1rem 4rem;
+  border-radius: 10px;
+  margin-right: 4rem;
+}

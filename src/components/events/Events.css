@@ -1,0 +1,11 @@
+.form_event {
+  margin-top: 2rem;
+  position: absolute;
+  left: 30%;
+  color: white;
+}
+
+.form_style {
+  display: flex;
+  gap: 2rem;
+}

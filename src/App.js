@@ -1,25 +1,30 @@
-import logo from './logo.svg';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Header from './components/navigation/Header';
+import HomePage from './components/home/HomePage';
+import Signup from './components/Signup';
+import NavBar from './components/navigation/NavBar';
+import Competiton from './components/competition/Competiton';
+import Events from './components/events/Events';
+import AddParticipants from './components/participants/AddParticipants';
+import ParticipantView from './components/participantsView/ParticipantView';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Header />}>
+          <Route index element={<HomePage />} />
+          <Route path='login' element={<Signup />} />
+          <Route path='competition' element={<Competiton />} />
+          <Route path='add_events' element={<Events />} />
+          <Route path='participant_view' element={<ParticipantView />} />
+          <Route path='add_participant' element={<AddParticipants />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
+  ///competiti
 }
 
 export default App;
