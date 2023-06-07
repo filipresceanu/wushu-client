@@ -1,26 +1,51 @@
 import React from 'react';
 import './Competition.css';
-import { db } from '../../config/firebase';
-import { collection, getDocs, addDoc } from 'firebase/firestore';
 import { useState, useEffect } from 'react';
+import axios from 'axios';
+import register from '../../register-svgrepo-com.svg';
+import { useNavigate } from 'react-router-dom';
+import { useCompetition } from '../../context/CompetitionContext';
 
 export default function Competiton() {
-  const [events, setEvents] = useState([]);
-  const eventsCollectionRef = collection(db, 'events');
+  const [event, setEvent] = useState([]);
   var messageLate = 'Inscrierile s-au incheiat';
   var messageGood = 'Inscrieri in curs';
-  useEffect(() => {
-    const getEvent = async () => {
-      const data = await getDocs(eventsCollectionRef);
-      setEvents(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    };
+  const navigate = useNavigate();
 
-    getEvent();
+  useEffect(() => {
+    (async () => await getEvents())();
   }, []);
+
+  async function getEvents() {
+    axios.get('https://localhost:7230/api/Event/get-event').then((response) => {
+      setEvent(response.data);
+    });
+  }
+
+  function handlerAddParticipants(name) {
+    navigate('/add_participant');
+  }
 
   const displayStyleDate = (message) => ({
     backgroundColor: message === messageGood ? '#6cd33b' : '#F01010',
   });
+
+  function displayregisterParticipants(message, name) {
+    if (message === messageGood) {
+      return (
+        <div
+          className='status-register '
+          onClick={() => handlerAddParticipants(name)}
+        >
+          <div className='stats'>
+            <img src={register} alt='register' />
+            <h5>Inscrieri</h5>
+          </div>
+        </div>
+      );
+    }
+    return <div></div>;
+  }
 
   const getDateTime = (dateTime) => {
     const temp = new Date(dateTime);
@@ -42,7 +67,7 @@ export default function Competiton() {
 
   return (
     <div className='competition'>
-      {events.map((event) => {
+      {event.map((event) => {
         return (
           <div key={event.id} className='competition-element'>
             <div className='country'>
@@ -51,7 +76,7 @@ export default function Competiton() {
                 src='images/romania.png'
                 alt='country'
               />
-              <h5>{getDateTime(event.Data)}</h5>
+              <h5>{getDateTime(event.date)}</h5>
             </div>
             <div className='logo'>
               <img
@@ -61,15 +86,20 @@ export default function Competiton() {
               />
             </div>
             <div className='details flex-fill'>
-              <h5>{event.Name}</h5>
-              <h6>{event.Type}</h6>
+              <h5>{event.name}</h5>
+              <h6>Competiton</h6>
               <div
                 className='status'
-                style={displayStyleDate(validateDateForCompetition(event.Data))}
+                style={displayStyleDate(validateDateForCompetition(event.date))}
               >
-                {validateDateForCompetition(event.Data)}
+                {validateDateForCompetition(event.date)}
               </div>
             </div>
+
+            {displayregisterParticipants(
+              validateDateForCompetition(event.date),
+              event.name
+            )}
           </div>
         );
       })}

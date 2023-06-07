@@ -1,8 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import axios from 'axios';
 
 export default function AddParticipants() {
+  const [name, setName] = useState('');
+  const [newType, setNewType] = useState('Concurs');
+  const [newData, setNewData] = useState(Date.now());
+  const [error, setError] = useState('');
+
+  const createEvent = async () => {};
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
+    try {
+      await createEvent();
+    } catch (e) {
+      setError(e.message);
+      console.log(e.message);
+    }
+  };
+
   return (
     <div>
       <div className='form_event'>
@@ -26,7 +45,7 @@ export default function AddParticipants() {
           <div className='flex-full'>
             <Form.Group className='mb-3' controlId='formBasicWeight'>
               <Form.Label>Categoria de greutate</Form.Label>
-              <Form.Control type='text' placeholder='Bucuresti' />
+              <Form.Control type='number' placeholder='74' />
             </Form.Group>
 
             <Form.Group className='mb-3' controlId='formBirthDaty'>

@@ -2,21 +2,18 @@ import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import './Events.css';
-import { db } from '../../config/firebase';
-import { collection, getDocs, addDoc } from 'firebase/firestore';
+import axios from 'axios';
 
 export default function Events() {
   const [newName, setNewName] = useState('');
-  const [newType, setNewType] = useState('');
+  const [newType, setNewType] = useState('Concurs');
   const [newData, setNewData] = useState(Date.now());
   const [error, setError] = useState('');
-  const eventsCollectionRef = collection(db, 'events');
 
   const createEvent = async () => {
-    await addDoc(eventsCollectionRef, {
-      Name: newName,
-      Data: newData,
-      Type: newType,
+    axios.put('https://localhost:7230/api/Event/add-event', {
+      name: newName,
+      date: newData,
     });
   };
 
