@@ -27,3 +27,8 @@
   display: flex;
   font-size: x-large;
 }
+
+.active-user {
+  display: flex;
+  color: aliceblue !important;
+}

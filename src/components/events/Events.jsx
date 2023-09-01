@@ -44,27 +44,9 @@ export default function Events() {
               />
             </Form.Group>
 
-            <Form.Group className='mb-3' controlId='formBasicDescrption'>
-              <Form.Label>Tipul</Form.Label>
-              <Form.Control
-                type='text'
-                placeholder='Seminar'
-                onChange={(event) => {
-                  setNewType(event.target.value);
-                }}
-              />
-            </Form.Group>
-
-            <Form.Group className='mb-3' controlId='formBasicCity'>
-              <Form.Label>Oras</Form.Label>
-              <Form.Control type='text' placeholder='Bucuresti' />
-            </Form.Group>
+            
           </div>
           <div className='flex-full'>
-            <Form.Group className='mb-3' controlId='formBasicStreet'>
-              <Form.Label>Strada</Form.Label>
-              <Form.Control type='text' placeholder='Ghe Doja nr55' />
-            </Form.Group>
             <Form.Group className='mb-3' controlId='formDatetimeInceput'>
               <Form.Label>Data de inceput</Form.Label>
               <Form.Control
@@ -75,10 +57,7 @@ export default function Events() {
                 }}
               ></Form.Control>
             </Form.Group>
-            <Form.Group className='mb-3' controlId='formDatetimeFinal'>
-              <Form.Label>Data de inchidere</Form.Label>
-              <Form.Control type='datetime-local' placeholder=''></Form.Control>
-            </Form.Group>
+            
           </div>
         </Form>
         <Button variant='primary' onClick={handleSubmit}>

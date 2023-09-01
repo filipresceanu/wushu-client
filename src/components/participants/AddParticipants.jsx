@@ -1,21 +1,46 @@
-import React, { useState, useEffect } from 'react';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+
+import Form from "react-bootstrap/Form";
+import axios from "axios";
+import { useCompetition } from "../../context/CompetitionContext";
+import { useNavigate } from "react-router-dom";
+import CategoryData from "../category/CategoryData";
+import "./AddParticipants.css";
+import UploadParticipants from "./UploadParticipants";
+import { Button, Col, DatePicker, Row, TimePicker } from "antd";
 
 export default function AddParticipants() {
-  const [name, setName] = useState('');
-  const [newType, setNewType] = useState('Concurs');
-  const [newData, setNewData] = useState(Date.now());
-  const [error, setError] = useState('');
+  const { events, selectedEvent, setSelectedEvent } = useCompetition();
+  const [name, setName] = useState("");
+  const [weight, setWeight] = useState(0);
+  const [club, setClub] = useState("");
+  const [sex, setSex] = useState("");
+  const [birthDate, setBirthDate] = useState(Date.now());
+  const [error, setError] = useState("");
+  const [modalOpen, setModalOpen] = useState(false);
 
-  const createEvent = async () => {};
+  useEffect(() => {
+    console.log(selectedEvent);
+  }, []);
+
+  const addParticipant = async () => {
+    axios.put(
+      `https://localhost:7230/api/Event/add-in-competition/${selectedEvent}`,
+      {
+        name: name,
+        club: club,
+        birthDay: birthDate,
+        sex: sex,
+        categoryWeight: weight,
+      }
+    );
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
+    setError("");
     try {
-      await createEvent();
+      await addParticipant();
     } catch (e) {
       setError(e.message);
       console.log(e.message);
@@ -24,38 +49,66 @@ export default function AddParticipants() {
 
   return (
     <div>
-      <div className='form_event'>
-        <Form className='form_style'>
-          <div className='flex-fill'>
-            <Form.Group className='mb-3' controlId='formBasicName'>
-              <Form.Label>Nume</Form.Label>
-              <Form.Control type='text' placeholder='Nume' />
-            </Form.Group>
-
-            <Form.Group className='mb-3' controlId='formBasicClub'>
-              <Form.Label>Club</Form.Label>
-              <Form.Control type='text' placeholder='Club' />
-            </Form.Group>
-
-            <Form.Group className='mb-3' controlId='formBasicSex'>
-              <Form.Label>Sex</Form.Label>
-              <Form.Control type='text' placeholder='Feminin/Masculin' />
-            </Form.Group>
+      <div class="form">
+        <div class="title">Inscriere</div>
+        <div class="subtitle">Inscriere participant</div>
+        <div className="fill-flex">
+          <div class="input-container ic1">
+            <input
+              id="name"
+              class="input"
+              type="text"
+              placeholder="Nume"
+              onChange={(event) => setName(event.target.value)}
+            />
           </div>
-          <div className='flex-full'>
-            <Form.Group className='mb-3' controlId='formBasicWeight'>
-              <Form.Label>Categoria de greutate</Form.Label>
-              <Form.Control type='number' placeholder='74' />
-            </Form.Group>
-
-            <Form.Group className='mb-3' controlId='formBirthDaty'>
-              <Form.Label>Data nasterii</Form.Label>
-              <Form.Control type='date' placeholder='14/11/199'></Form.Control>
-            </Form.Group>
+          <div class="input-container ic1">
+            <input
+              id="club"
+              class="input"
+              type="text"
+              placeholder="Club"
+              onChange={(event) => setClub(event.target.value)}
+            />
           </div>
-        </Form>
-        <Button variant='primary'>Adauga</Button>
+          <div class="input-container ic2">
+            <input
+              id="sex"
+              class="input"
+              placeholder="Feminin/Masculin"
+              onChange={(event) => setSex(event.target.value)}
+            />
+          </div>
+        </div>
+        <div className="fill-flex">
+          <div class="input-container ic1 full">
+            <label className="label">Greutate</label>
+            <input
+              id="greutate"
+              class="input"
+              type="number"
+              placeholder="50"
+              onChange={(event) => setWeight(event.target.value)}
+            />
+          </div>
+          <div className="input-container ic2 full">
+            <label className="label">Data Nasterii</label>
+            <input
+              id="birthDate"
+              class="input"
+              type="date"
+              onfocus="(this.type='date')"
+              onblur="(this.type='text')"
+              placeholder="14/11/1999"
+              onChange={(event) => setBirthDate(event.target.value)}
+            />
+          </div>
+        </div>
+        <button type="text" class="submit" onClick={handleSubmit}>
+          submit
+        </button>
       </div>
+      <CategoryData />
     </div>
   );
 }

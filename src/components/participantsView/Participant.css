@@ -13,3 +13,22 @@
 .table_data {
   border-style: none;
 }
+
+tr {
+  border-bottom-width: none !important;
+  border-style: none !important;
+}
+
+.table-name {
+  align-items: center;
+  font-size: larger;
+  font-weight: bold;
+  color: aliceblue;
+  border-radius: 10px;
+  background-color: blue;
+  margin-bottom: 10px;
+  height: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

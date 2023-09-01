@@ -47,19 +47,36 @@
 }
 
 .status-register {
-  color: aliceblue;
   background-color: #5561cd;
   border-radius: 5px;
-  width: 5rem;
   margin-top: 0.2rem;
   margin-bottom: 0.2rem;
-
-  margin-right: 30rem;
-  align-items: center;
-  justify-content: center;
 }
 
 .stats {
   margin-left: auto;
   margin-right: auto;
+}
+
+.view-participanti {
+  border-radius: 5px;
+  background-color: aliceblue;
+  padding: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-right: 20px;
+  margin-left: 100px;
+  color: #22242e;
+}
+
+.boxStyle {
+  background-color: #6cd33b;
+  color: #22242e;
+  font-size: medium;
+  font-weight: 500;
+  padding: 10px;
+  border-radius: 5px;
+  width: 6rem;
+  margin: 0.5rem;
+  margin-right: 2rem;
 }

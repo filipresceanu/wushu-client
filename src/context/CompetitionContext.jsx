@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const CompetitionContext = React.createContext({});
 
-export default function CompetitionContextProvider({ children }) {
+export const CompetitionContextProvider = ({ children }) => {
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [events, setEvents] = useState([]);
 
@@ -24,6 +24,6 @@ export default function CompetitionContextProvider({ children }) {
       {children}
     </CompetitionContext.Provider>
   );
-}
+};
 
 export const useCompetition = () => useContext(CompetitionContext);
