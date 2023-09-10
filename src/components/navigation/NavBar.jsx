@@ -32,11 +32,11 @@ export default function NavBar() {
     <Navbar collapseOnSelect expand="lg" className="navbar">
       <Container>
         <NavLink className="navbar-link navbar-home" to="/">
-          Home
+          Acasa
         </NavLink>
         <div className="navbar-element">
           <NavLink className="navbar-link" to="competition">
-            Competition
+            Competiti
           </NavLink>
           <NavLink className="navbar-link" to="add_events">
             Adauga competitie

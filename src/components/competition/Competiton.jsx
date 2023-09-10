@@ -18,6 +18,11 @@ export default function Competiton() {
     navigate("/add_participant");
   }
 
+  function handleGenerateMatches(id) {
+    setSelectedEvent(id);
+    navigate("/generate-matches");
+  }
+
   function handlerAddCategory(id) {
     setSelectedEvent(id);
     navigate("/add_category");
@@ -30,7 +35,7 @@ export default function Competiton() {
   function displayStartMatches(message, id) {
     if (message === messageLate) {
       return (
-        <div className="boxStyle" onClick={() => handlerAddParticipants(id)}>
+        <div className="boxStyle" onClick={() => handleGenerateMatches(id)}>
           <div>
             <h5>Generare Meciuri</h5>
           </div>
