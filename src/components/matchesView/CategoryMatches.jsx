@@ -1,6 +1,7 @@
 import React from "react";
 import "./CategoryMatches.css";
 import Matches from "./Matches";
+import NextStage from "./NextStage";
 
 export default function CategoryMatches({ category }) {
   if (category.matches.length === 0) {
@@ -28,6 +29,7 @@ export default function CategoryMatches({ category }) {
         </div>
       </div>
       <Matches matches={category.matches} />
+      <NextStage />
     </>
   );
 }

@@ -1,0 +1,11 @@
+.no-matches {
+  background-color: red;
+  font-size: xx-large;
+  color: aliceblue;
+  margin-top: 20%;
+  width: 1150px;
+  height: 100px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}

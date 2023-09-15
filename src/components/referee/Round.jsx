@@ -11,7 +11,7 @@ export default function Round({ round, matchId }) {
   const [error, setError] = useState("");
 
   const addPoints = async () => {
-    axios.put(
+    await axios.put(
       `https://localhost:7230/api/Match/AddPointsRound/${round.roundId}`,
       {
         pointsFirstParticipant: firstParticipantPoints,
@@ -67,7 +67,7 @@ export default function Round({ round, matchId }) {
           />
         </div>
         {haveWinner ? (
-          <div>Castigator: ${winner.name}</div>
+          <div>Castigator: {winner.name}</div>
         ) : (
           <Button variant="info" onClick={handleSubmit}>
             Trimite punctajul

@@ -13,7 +13,7 @@ import { CompetitionContextProvider } from "./context/CompetitionContext";
 import "./App.css";
 import { AuthProvider } from "./context/AuthProvider";
 import RefereeMatch from "./components/referee/RefereeMatch";
-import GenerateMatches from "./components/matchesView/GenerateMatches";
+import ViewAllMatches from "./components/matchesView/ViewAllMatches";
 
 function App() {
   return (
@@ -31,7 +31,7 @@ function App() {
               <Route path="add_participant" element={<AddParticipants />} />
               <Route path="add_category" element={<Category />} />
               <Route path="refere_match" element={<RefereeMatch />} />
-              <Route path="generate-matches" element={<GenerateMatches />} />
+              <Route path="view-matches" element={<ViewAllMatches />} />
             </Route>
           </Routes>
         </BrowserRouter>

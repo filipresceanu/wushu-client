@@ -1,5 +1,5 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { createContext, useContext, useState, useEffect } from "react";
+import axios from "axios";
 
 const CompetitionContext = React.createContext({});
 
@@ -12,9 +12,11 @@ export const CompetitionContextProvider = ({ children }) => {
   }, []);
 
   async function getEvents() {
-    axios.get('https://localhost:7230/api/Event/get-event').then((response) => {
-      setEvents(response.data);
-    });
+    await axios
+      .get("https://localhost:7230/api/Event/get-event")
+      .then((response) => {
+        setEvents(response.data);
+      });
   }
 
   return (

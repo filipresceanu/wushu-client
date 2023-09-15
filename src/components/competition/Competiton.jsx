@@ -3,6 +3,8 @@ import "./Competition.css";
 import { useState, useEffect } from "react";
 import register from "../../register-svgrepo-com.svg";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import Button from "react-bootstrap/Button";
 import { useCompetition } from "../../context/CompetitionContext";
 import { useAuth } from "../../context/AuthProvider";
 const messageLate = "Inscrierile s-au incheiat";
@@ -18,9 +20,18 @@ export default function Competiton() {
     navigate("/add_participant");
   }
 
-  function handleGenerateMatches(id) {
+  async function handleGenerateMatches(id) {
+    await axios.put(
+      `https://localhost:7230/api/Match/Generate-First-Matches/${id}`
+    );
+    await axios.put(
+      `https://localhost:7230/api/Match/Distribute_Referee/${id}`
+    );
+  }
+
+  function handleViewMatches(id) {
     setSelectedEvent(id);
-    navigate("/generate-matches");
+    navigate("/view-matches");
   }
 
   function handlerAddCategory(id) {
@@ -35,9 +46,20 @@ export default function Competiton() {
   function displayStartMatches(message, id) {
     if (message === messageLate) {
       return (
-        <div className="boxStyle" onClick={() => handleGenerateMatches(id)}>
+        <Button variant="success" onClick={() => handleGenerateMatches(id)}>
+          Generare Meciuri
+        </Button>
+      );
+    }
+    return <></>;
+  }
+
+  function displayAllMatches(message, id) {
+    if (message === messageLate) {
+      return (
+        <div className="boxStyle" onClick={() => handleViewMatches(id)}>
           <div>
-            <h5>Generare Meciuri</h5>
+            <h5>Vizualizare Meciuri</h5>
           </div>
         </div>
       );
@@ -136,6 +158,10 @@ export default function Competiton() {
                 {validateDateForCompetition(event.date)}
               </div>
             </div>
+            {displayAllMatches(
+              validateDateForCompetition(event.date),
+              event.id
+            )}
             {displayStartMatches(
               validateDateForCompetition(event.date),
               event.id

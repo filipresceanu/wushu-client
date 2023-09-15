@@ -28,7 +28,7 @@ export default function Match({ match }) {
 
   const setWinnerMatchEqal = async () => {
     try {
-      axios.put(
+      await axios.put(
         `https://localhost:7230/api/Match/SetWinnerMatch/${match.matchId}`
       );
     } catch (e) {
@@ -75,7 +75,7 @@ export default function Match({ match }) {
 
   const getWinner = async () => {
     try {
-      axios
+      await axios
         .get(`https://localhost:7230/api/Match/WinnerMatch/${match.matchId}`)
         .then((response) => {
           setWinner(response.data);
